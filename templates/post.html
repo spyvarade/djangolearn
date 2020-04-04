@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>My Post</title>
+</head>
+<body>
+
+	<h1>Catagories</h1>
+	<ul>
+
+		{% for cat in catagories%}
+		<li>{{ cat.title}}</li>
+		{% endfor %}
+	</ul>
+
+	<h1>POst</h1>
+	<ul>
+
+		{% for p in posts%}
+		<li>{{ p.title}}</li>
+		{% endfor %}
+	</ul>
+	
+	
+</body>
+</html>
