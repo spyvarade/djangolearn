@@ -28,10 +28,11 @@ class Post(models.Model):
 	slug  			= models.SlugField(max_length = 250, null = True, blank = True)
 	views 			= models.PositiveIntegerField() 
 	likes           = models.PositiveIntegerField()
-	image 			= models.ImageField(upload_to ='uploads/') # need Pillow Lib
+	image 			= models.ImageField('Picture',upload_to ='uploads/') # need Pillow Lib
 	body  			= models.TextField()
 	published_at 	= models.DateTimeField(auto_now_add = True) 
 	updated 		= models.DateTimeField(auto_now = True)
+	active          = models.BooleanField()
 	status 			= models.CharField(max_length = 10, choices = STATUS_CHOICES, default ='draft')
 
 	class Meta:
@@ -39,6 +40,14 @@ class Post(models.Model):
 
 	def __str__(self):
 		return self.title 
+
+	@property
+	def common(self):
+		return '{} and {}'.format(self.title, self.slug)
+
+	@property
+	def view_plus_like(self):
+		return self.views+self.likes
 
 
 class Comment(models.Model):
